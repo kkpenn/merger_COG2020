@@ -2,7 +2,8 @@
 
 import sys, time, re
 
-# Building the dictionary to compare COGs to the GI ID
+
+# Build the dictionary of GenBank protein ID to COG ID
 cog_db = {}
 t0 = time.time()
 
@@ -12,10 +13,10 @@ with open(sys.argv[2], "r") as cog_file:
     cog_db[split[2]] = split[6]
   t1 = time.time()
 
-print(f"Cog file read. Time elapsed: {t1-t0} seconds.")
+print(f"\nCog file read. Time elapsed: {t1-t0} seconds.")
 
 
-# Building the dictionary to add the function code to the COGs
+# Build the dictionary of COG ID to COG functional category and COG name
 trans_cog = {}
 
 with open(sys.argv[3], "r", encoding="cp1252") as cog_trans_file:
@@ -49,4 +50,4 @@ with open(sys.argv[1], "r") as prot_file:
 t2 = time.time()
 
 print("Protein file analyzed. Time elapsed: " + str(t2-t1) + " seconds.")
-print("Number of sequences without a COG: " + str(error_count))
+print("Number of sequences without a COG: " + str(error_count) + "\n")
